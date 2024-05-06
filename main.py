@@ -1,15 +1,19 @@
 """
-Create a start_game() to call the play_game() Fn.
-Number Guesser Game in 3 or less guesses
-Limit the number between 1 - 10
-Keep score.  
-Generate random number 
-Take inputs and check if user guesses the random number.
-Offer to play game again
+        Number Guesser Game 
+        Ask user if they want to play. 
+        Start the game:
+        Limit the number by the range the user 1 to top number user provides.
+        Keep quesses count.  
+
+        Generate random number 
+        Take inputs and check if user guesses the random number.
+        Confirm if guess is: less than or greater than the random number.
+        Return number of guesses it took to guess the number.
+        Ask if they want to play again.
 """
 import random 
 print('Number Guessing Game')
-print('Within 3 Guesses, Guess the Number the computer generated randomly between 1 and 10')
+print(You choose the largest number the random number could be, then guess it!')
 
 def start_game() :
     print()
@@ -23,33 +27,41 @@ def start_game() :
       quit()
 
 def game_play(game_len) :
-    score = 5
-    answer = random.randint(1, 10)
-    winner = False
-    # print(answer, 'answer') # use for testing
     
-    for i, num in enumerate(range(1, game_len)) :
-        print('Guess: ', num, 'Score: ', score)
-        user_guess = input('Whats your number guess between 1 - 10?  ')
-        user_guess = int(user_guess)
-        print('Your guess: ', user_guess)
-        if user_guess == answer :
-            winner = True
-            break
-        else :
-            score -= 1
+    top_of_range = input('Input a Number: ')
+    if top_of_range.isdigit() :
+       top_of_range = int(top_of_range)
+       if top_of_range <= 1 :
+          print('Please type a number higher than 1')
+          start_game()
+    else: 
+       print('Please type a number next time.')
+       start_game()
+
+    random_number = random.randint(1, top_of_range)
+    guesses = 0
+
+    while True :
+            guesses += 1
+            user_guess = input('Guess the number: ')
+            if user_guess.isdigit() :
+                user_guess = int(user_guess)
+            else :
+                print('Please type a number next time.')
+                continue
             
-    if winner == True :
-        print(' 🤩  You Win! Your score is: ', score)
-        start_game()
-    else :
-        print(' 😏  You Lose. The winning answer was: ', answer)
-        start_game()
+            if user_guess == random_number :
+                print('You guessed it!')
+                break
+            elif user_guess > random_number :
+                print('Your guess is greater than the number. 😏')
+            else :
+                print('Your guess is less than the number. 😏')
 
-    winner = False
-
+    print(' 🤩 Success! you guessed the number in ', guesses, 'guesses!')
+    start_game()
+            
 start_game()
-
 
 
 
