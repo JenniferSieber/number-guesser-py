@@ -1,12 +1,11 @@
 """
+Create a start_game() to call the play_game() Fn.
 Number Guesser Game in 3 or less guesses
 Limit the number between 1 - 10
 Keep score.  
-correct answer on guess: guesscount  - numOfGuesses + 1 for score..
-
-Ask number of times want to play.
 Generate random number 
 Take inputs and check if user guesses the random number.
+Offer to play game again
 """
 import random 
 print('Number Guessing Game')
